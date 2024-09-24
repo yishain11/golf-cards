@@ -11,7 +11,12 @@ class Card {
 
 class Player { }
 
-class Deck { }
+class Deck {
+    constructor() {
+        this.cards = [];
+    }
+    shuffleDeck() { }
+}
 
 
 class Pile { }
