@@ -52,7 +52,7 @@ class Deck extends GeneralDeck {
         for (let i = 0; i < values.length; i++) {
             const value = values[i];
             suites.forEach(suite => {
-                this.cards.push(`${value}${suite}`);
+                this.cards.push(new Card(value, suite));
             });
         }
     }
@@ -76,8 +76,6 @@ class Deck extends GeneralDeck {
     }
 }
 
-const d1 = new Deck();
-
 class Pile extends GeneralDeck {
     constructor() {
         super();
@@ -93,6 +91,7 @@ class Game {
         this.dealInitHands();
         this.isGameOn = true;
         this.currentPlayerIndex = 0;
+        this.playRound()
     }
     dealInitHands() {
         for (let j = 0; j < 2; j++) {
@@ -115,7 +114,32 @@ class Game {
     playRound() {
         while (this.checkIfGameOn()) {
             const currentPlayer = this.players[this.currentPlayerIndex];
-            const action = rl.question("select what to do - 0 for pick from pile, 1 for pick from deck")
+            const action = rl.question("select what to do - 0 for pick from pile, 1 for pick from deck ");
+            // TODO: validate user input - 0 or 1 and nothing else
+            switch (action) {
+                case "0":
+
+                    break;
+                case "1":
+                    console.log(`player ${this.currentPlayerIndex} selected to pick from deck`);
+                    const cardFromDeck = this.deck.getTopCard();
+                    const wantToReplace = rl.question(`do you want to replace card ${cardFromDeck.showCard()} with one in your hand? y/n`);
+                    // TODO validate input + uppercase?
+                    switch (wantToReplace) {
+                        case "y":
+
+                            break;
+
+                        case "n":
+                            console.log("player selected to pud card from deck on pile");
+                            this.pile.cards.push(cardFromDeck);
+                            break;
+                    }
+                    break;
+
+            }
         }
     }
 }
+
+const g1 = new Game();
