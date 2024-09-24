@@ -14,6 +14,7 @@ class Player { }
 class Deck {
     constructor() {
         this.cards = [];
+        this.generateDeck()
     }
     generateDeck() {
         // generate 52 cards - 1-13, 4 suites
@@ -29,6 +30,8 @@ class Deck {
     shuffleDeck() { }
 }
 
+const d1 = new Deck();
+console.log('✌️d1 --->', d1);
 
 class Pile { }
 
