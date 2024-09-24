@@ -23,6 +23,17 @@ class Player {
     constructor(name) {
         this.name = name;
         this.hand = [];
+        this.numCardsFlipped = 0;
+    }
+    countFlippedCards() {
+        let count = 0;
+        this.hand.forEach(card => {
+            if (card.isFlipped) {
+                count += 1;
+            }
+        });
+        this.numCardsFlipped = count;
+        return count
     }
 }
 
@@ -78,6 +89,8 @@ class Game {
         this.deck = new Deck();
         this.pile = new Pile();
         this.dealInitHands();
+        this.isGameOn = true;
+        this.currentPlayerIndex = 0;
     }
     dealInitHands() {
         for (let j = 0; j < 2; j++) {
@@ -86,6 +99,20 @@ class Game {
                 const card = this.deck.getTopCard();
                 player.hand.push(card)
             }
+        }
+    }
+    checkIfGameOn() {
+        for (let i = 0; i < this.players.length; i++) {
+            const player = this.players[i];
+            if (player.countFlippedCards() === 4) {
+                return false;
+            }
+        }
+        return true;
+    }
+    playRound() {
+        while (this.checkIfGameOn()) {
+            const currentPlayer = this.players[this.currentPlayerIndex];
         }
     }
 }
