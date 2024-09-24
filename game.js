@@ -1,3 +1,13 @@
+class GeneralDeck {
+    constructor() { }
+    getTopCard() {
+        if (this.cards.length === 0) {
+            return -1;
+        }
+        return this.cards.pop();
+    }
+}
+
 class Card {
     constructor(value, suite) {
         this.value = value;
@@ -11,13 +21,14 @@ class Card {
 
 class Player {
     constructor(name) {
-        this.name;
+        this.name = name;
         this.hand = [];
     }
 }
 
-class Deck {
+class Deck extends GeneralDeck {
     constructor() {
+        super();
         this.cards = [];
         this.generateDeck()
         this.shuffleDeck()
@@ -44,10 +55,24 @@ class Deck {
             this.cards[idx2] = temp;
         }
     }
+    getTopCard() {
+        if (this.cards.length === 0) {
+            return -1;
+        }
+        return this.cards.pop();
+    }
 }
 
 const d1 = new Deck();
 
-class Pile { }
+class Pile extends GeneralDeck {
+    constructor() {
+        super();
+        this.cards = [];
+    }
+}
+const p1 = new Pile();
+console.log('✌️p1 --->', p1);
+console.log("top card pile", p1.getTopCard())
 
 class Game { }
