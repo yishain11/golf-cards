@@ -71,8 +71,11 @@ class Pile extends GeneralDeck {
         this.cards = [];
     }
 }
-const p1 = new Pile();
-console.log('✌️p1 --->', p1);
-console.log("top card pile", p1.getTopCard())
 
-class Game { }
+class Game {
+    constructor() {
+        this.players = [new Player(0), new Player(1)];
+        this.deck = new Deck();
+        this.pile = new Pile();
+    }
+}
