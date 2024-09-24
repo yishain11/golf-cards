@@ -77,5 +77,15 @@ class Game {
         this.players = [new Player(0), new Player(1)];
         this.deck = new Deck();
         this.pile = new Pile();
+        this.dealInitHands();
+    }
+    dealInitHands() {
+        for (let j = 0; j < 2; j++) {
+            const player = this.players[j];
+            for (let i = 0; i < 4; i++) {
+                const card = this.deck.getTopCard();
+                player.hand.push(card)
+            }
+        }
     }
 }
