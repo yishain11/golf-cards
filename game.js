@@ -15,6 +15,7 @@ class Deck {
     constructor() {
         this.cards = [];
         this.generateDeck()
+        this.shuffleDeck()
     }
     generateDeck() {
         // generate 52 cards - 1-13, 4 suites
@@ -27,11 +28,29 @@ class Deck {
             });
         }
     }
-    shuffleDeck() { }
+    shuffleDeck() {
+        /*
+            1. loop alot of times -V
+            2. select 2 indx from cards array - V
+            3. check that 2 indx are diff -V
+            4. if not - select new - V
+            5. replace 2 cards in cards array
+        */
+        for (let i = 0; i < 1000; i++) {
+            let idx1 = Math.floor(Math.random() * this.cards.length);
+            let idx2 = Math.floor(Math.random() * this.cards.length);
+            while (idx2 === idx1) {
+                idx1 = Math.floor(Math.random() * this.cards.length);
+            }
+            const temp = this.cards[idx1];
+            this.cards[idx1] = this.cards[idx2];
+            this.cards[idx2] = temp;
+        }
+
+    }
 }
 
 const d1 = new Deck();
-console.log('✌️d1 --->', d1);
 
 class Pile { }
 
