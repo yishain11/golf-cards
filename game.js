@@ -114,6 +114,7 @@ class Game {
     playRound() {
         while (this.checkIfGameOn()) {
             const currentPlayer = this.players[this.currentPlayerIndex];
+            console.log(`its player ${this.currentPlayerIndex} turn. `);
             const action = rl.question("select what to do - 0 for pick from pile, 1 for pick from deck ");
             // TODO: validate user input - 0 or 1 and nothing else
             switch (action) {
@@ -123,7 +124,7 @@ class Game {
                 case "1":
                     console.log(`player ${this.currentPlayerIndex} selected to pick from deck`);
                     const cardFromDeck = this.deck.getTopCard();
-                    const wantToReplace = rl.question(`do you want to replace card ${cardFromDeck.showCard()} with one in your hand? y/n`);
+                    const wantToReplace = rl.question(`do you want to replace card ${cardFromDeck.showCard()} with one in your hand? y/n`); // fix undefeind
                     // TODO validate input + uppercase?
                     switch (wantToReplace) {
                         case "y":
@@ -131,8 +132,9 @@ class Game {
                             break;
 
                         case "n":
-                            console.log("player selected to pud card from deck on pile");
+                            console.log("player selected to put card from deck on pile ");
                             this.pile.cards.push(cardFromDeck);
+                            this.currentPlayerIndex === 0 ? this.currentPlayerIndex = 1 : this.currentPlayerIndex = 0; 
                             break;
                     }
                     break;
