@@ -1,3 +1,5 @@
+const rl = require('readline-sync');
+
 class GeneralDeck {
     constructor() { }
     getTopCard() {
@@ -113,6 +115,7 @@ class Game {
     playRound() {
         while (this.checkIfGameOn()) {
             const currentPlayer = this.players[this.currentPlayerIndex];
+            const action = rl.question("select what to do - 0 for pick from pile, 1 for pick from deck")
         }
     }
 }
